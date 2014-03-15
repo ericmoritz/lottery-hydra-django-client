@@ -13,5 +13,5 @@ rdflib==4.1.1
 requests==2.2.1
 six==1.6.1
 wsgiref==0.1.2
--e git+https://github.com/ericmoritz/hydra-python-client.git#egg=hydra-python-client
+git+https://github.com/ericmoritz/hydra-python-client.git
 -e .
