@@ -1,0 +1,15 @@
+
+<h2 class="lottery-title">Top 5 Jackpots</h2>
+<div class="lottery-column">
+    {% include "rdf/lottery:hasJackpot.html" with limit=3 %}
+</div>
+<div class="lottery-column">
+    <div class="lottery-rightrailwrapper">
+        {% include "rdf/lottery:hasJackpot.html" with offset=3 limit=2 %}
+        <div class="lottery-item lottery-item-border lottery-state-picker">
+            <p class="lottery-dropdown-header">All lottery results for U.S. &amp; Canada</p>
+            {% include "rdf/lottery:viewState/lottery:State.html" %}
+        </div>
+    </div>
+    <a class="lottery-powered-by" target="_blank" href="http://www.tinbu.com">Powered by <span>TinBu.com</span></a>
+</div>

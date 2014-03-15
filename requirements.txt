@@ -1,0 +1,16 @@
+Django==1.4.8
+PyLD==0.4.10
+SPARQLWrapper==1.5.2
+SQLAlchemy==0.9.3
+WebOb==1.3.1
+gunicorn==18.0
+html5lib==0.999
+httpcache==0.1.3
+isodate==0.5.0
+lottery-hydra==0.0.0
+pyparsing==2.0.1
+rdflib==4.1.1
+requests==2.2.1
+six==1.6.1
+wsgiref==0.1.2
+-e git+git@github.com:ericmoritz/hydra-python-client.git@db3cac83249931752ee0e3bee79bddb1ee1a9e10#egg=django_hydra_client-feature/weather-service

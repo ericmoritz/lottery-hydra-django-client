@@ -1,0 +1,30 @@
+{% load hydratags %}
+{% load lottery_tags %}
+
+{% sparql as states %}
+
+PREFIX schema: <http://schema.org/>
+PREFIX lottery: <http://vocab-ld.org/vocabs/lottery#>
+
+SELECT 
+  ?url ?state ?key
+{
+   <{{ request.build_absolute_uri }}> lottery:viewState ?url .
+
+   ?url schema:name ?state .
+   ?url lottery:stateId ?key .
+}
+
+{% endsparql %}
+
+<div class="lottery-state-picker-dropdown ui-dropdown ui-light" data-scrollbar="true">
+    <span class="ui-dropdown-value ui-btn">Select State</span>
+    <div class="ui-dropdown-content">
+        <ul class="ui-dropdown-items-container">
+            <li class="ui-dropdown-item" data-value=""><a href="" data-ht="" class="uotrack ui-dropdown-item-link">Select State</a></li>
+            {% for state in states %}
+                <li class="ui-dropdown-item" data-value="{{ state.key }}"><a href="{{ state.url }}" data-ht="lotteryresults{{ state.state|cut:" " }}" class="uotrack ui-dropdown-item-link">{{ state.state }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

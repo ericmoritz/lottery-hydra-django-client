@@ -1,0 +1,4 @@
+/.lottery-venv/
+*~
+*.pyc
+*.egg-info

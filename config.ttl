@@ -1,0 +1,5 @@
+@prefix lottery: <http://vocab-ld.org/vocabs/lottery#> .
+
+<.>
+    lottery:viewSummary <http://s3.amazonaws.com/eam-lottery/> .
+    #lottery:viewSummary <file:///Users/emoritz/Projects/lottery-rdf/dist/resources/> .

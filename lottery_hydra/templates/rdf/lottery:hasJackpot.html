@@ -1,0 +1,46 @@
+{% load hydratags %}
+{% load lottery_tags %}
+
+{% sparql as jackpots %}
+PREFIX lottery: <http://vocab-ld.org/vocabs/lottery#>
+PREFIX schema: <http://schema.org/>
+
+SELECT 
+   ?name ?jackpotAmount ?jackpotDate
+{
+   <{{ request.build_absolute_uri }}> lottery:hasJackpot ?jackpot .
+
+   ?game lottery:hasNext ?jackpot ;
+         schema:name ?game_name .
+
+   ?jackpot lottery:quantity ?jackpotAmount ;
+            lottery:date ?jackpotDate .
+   
+}
+ORDER BY DESC(?jackpotAmount)
+{% if limit %}
+LIMIT {{ limit }}
+{% endif %}
+{% if offset %}
+OFFSET {{ offset }}
+{% endif %}
+{% endsparql %}
+
+{% for game in jackpots %}
+    <div class="lottery-item">
+        <div class="lottery-types">{{ game.name }}</div>
+	<!-- TODO 
+        <div class="lottery-range">
+            {% if games|length > 1 %}
+                Multi-State
+            {% else %}
+                {{ game.states.0|upper }}
+            {% endif %}
+        </div>
+        -->
+        <div class="lottery-total">${{ game.jackpotAmount|format_jackpot }}</div>
+        <div class="lottery-next-draw">
+            Next Draw Date: <span class="lottery-draw-date">{{ game.jackpotDate.toPython|date:"n/j/y" }}</span>
+        </div>
+    </div>
+{% endfor %}
