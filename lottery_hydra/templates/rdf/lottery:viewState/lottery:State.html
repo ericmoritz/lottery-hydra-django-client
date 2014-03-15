@@ -14,7 +14,7 @@ SELECT
    ?url schema:name ?state .
    ?url lottery:stateId ?key .
 }
-
+ORDER BY ?state
 {% endsparql %}
 
 <div class="lottery-state-picker-dropdown ui-dropdown ui-light" data-scrollbar="true">
